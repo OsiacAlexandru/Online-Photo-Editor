@@ -1,0 +1,165 @@
+<!DOCTYPE html> 
+<!--Osiac Alexandru Cristian -->
+<!--Group 1079 -->
+<html>
+
+<head>
+
+    <title>Photo Editor</title>
+	
+	<meta charset="utf-8">
+	
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+	<script src="lib/jquery-1.12.4.js"></script>
+	<script src="lib/jquery-ui.js"></script>
+	<link rel="stylesheet" href="lib/bootstrap.min.css">
+	<script src="lib/jquery-3.3.1.slim.min.js"></script>
+	<script src="lib/popper.min.js"></script>
+	<script src="lib/bootstrap.min.js"></script>
+	<script src="1_1079_OSIAC_ALEXANDRU_CRISTIAN.js"></script>
+	<script src="lib/FileSave.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="1_1079_OSIAC_ALEXANDRU_CRISTIAN.css">
+    <link rel="manifest" href="lib/manifest.json">
+
+	<h2>
+			Photo editor
+	</h2>
+
+</head>
+
+<body id='body'>
+
+		
+		<!-- The canvas needed in order to implement the Web Storage API stuff -->
+
+		<canvas id='background'>
+		</canvas>
+
+	
+		<!-- The canvas on which I worked -->
+
+		<canvas id="canvas" >
+		</canvas>
+	
+	
+		<!--FIle input  -->
+
+    	<div id="choose_image">
+
+        <input onclick="PlaySound()" type="file" id="fileBrowser" name="fileBrowser" value="Choose image"
+			accept="image/*">
+			
+		</div>
+
+		<!--Popup needed for resizing the canvas -->
+
+		<div class="popup">
+		 	<div class="content">
+					<form>
+							<h1 id="resizeText">Resize</h1>
+							Width(pixels):<br>
+							<input id="width" type="number" name="width"><br>
+							Height(pixels):<br>
+							<input id="height" type="number" name="height"><br><br>
+							<button onclick="PlaySound()" type="button" class="btn btn-dark btn-sm" id="submit">Submit</button>
+							<button onclick="PlaySound2()" type="button" class="btn btn-dark btn-sm" id="close">Close</button>
+					</form>
+			</div>
+		</div>
+
+		
+		<script>
+
+		// The script needed in order for the audio CLICK1 to work
+
+		var sound = new Audio();
+		sound.src = "media\\click.mp3";
+		function PlaySound() 
+		{
+    	sound.play();
+		}
+		</script>
+
+		<script>
+
+		// The script needed in order for the audio CLICK2 to work
+
+		var sound2 = new Audio();
+		sound2.src = "media\\click2.wav";
+		function PlaySound2() 
+		{
+    	sound2.play();
+		}
+		</script>
+
+
+		<!-- Here we declare the audio files -->
+
+		<audio id="click"></audio>
+		<audio id="click2"></audio>
+
+		<!--Here are the rest of the Buttons -->
+
+		<div id="buttons">
+				<button onclick="PlaySound()" type="button" class="btn btn-dark btn-lg" id="resizeButton">Resize</button>
+				<button onclick="PlaySound()" type="button" class="btn btn-dark " id="loadStorage">Load background Image!</button>
+				<button onclick="PlaySound()" type="button" class="btn btn-dark " id="drawTriangle">Draw Triangle</button>
+				<button onclick="PlaySound()" type="button" class="btn btn-dark " id="drawRectangle">Draw Rectangle</button>
+				<button onclick="PlaySound()" type="button" class="btn btn-dark " id="drawCircle">Draw Circle</button>
+		</div>
+
+		<!--Here are the effect buttons-->
+
+		<div id="effectButtons" class="btn-group" role="group">
+
+				<button onclick="PlaySound()" id = "effectButton1" type="button" class="btn btn-warning btn-sm" data-effect="normal">Normal</button>
+				<button onclick="PlaySound()" id = "effectButton2" type="button" class="btn btn-info btn-sm" data-effect="Sepia">Sepia</button>
+				<button onclick="PlaySound()" id = "effectButton3" type="button" class="btn btn-success btn-sm" data-effect="green">Green</button>
+				<button onclick="PlaySound()" id = "effectButton4" type="button" class="btn btn-danger btn-sm" data-effect="red">Red</button>
+				<button onclick="PlaySound()" id = "effectButton5" type="button" class="btn btn-primary btn-sm" data-effect="blue">Blue</button>
+				<button onclick="PlaySound()" id = "effectButton6" type="button" class="btn btn-dark btn-sm" data-effect="invert">Invert</button>
+
+		</div>
+
+		<script >
+
+		// Here is used the Web Storage API in order to load a picture through a source link into the app
+
+		localStorage.setItem('image-link',"Media/download.jpg");
+		let value=localStorage.getItem('image-link');
+
+		$('#loadStorage').on("click", function() 
+    	{
+		let image = document.createElement('img');
+		image.setAttribute('src',value);
+		image.addEventListener('load', function()
+            {
+                app.drawBackground(this);
+            });
+    	});
+		
+		</script>
+		
+		<!--Here you download the file-->
+
+		<div id="download">
+
+			<a onclick="PlaySound()" id="donwloadLink" href="#" download="EditedImage">
+					Save File
+			</a>
+
+		</div>
+
+    	<script>
+        app.load();
+		</script>
+
+
+
+	
+	
+</body>
+
+</html>

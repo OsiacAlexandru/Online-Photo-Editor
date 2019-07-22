@@ -1,0 +1,17 @@
+{
+    "short_name": "PhotoEditor",
+    "name": "PhotoEditor",
+    "description": "PhotoEditor",
+    "icons": [
+        {
+            "src": "../media/paint.png",
+            "sizes": "144x144",
+            "type": "image/png"
+        }
+    ],
+    "start_url": "1_1079_OSIAC_ALEXANDRU_CRISTIAN.html",
+    "display": "standalone",
+    "orientation": "portrait",
+    "theme_color": "#FFFFFF",
+    "background_color": "#FFFFFF"
+}
